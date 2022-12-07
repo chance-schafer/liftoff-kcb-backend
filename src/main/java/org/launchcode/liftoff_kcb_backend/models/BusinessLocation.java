@@ -9,12 +9,12 @@ public class BusinessLocation extends AbstractEntity{
 
     private String city;
 
-    private int zipcode;
+    private int zipCode;
 
-    public BusinessLocation(String county, String city, int zipcode) {
+    public BusinessLocation(String county, String city, int zipCode) {
         this.county = county;
         this.city = city;
-        this.zipcode = zipcode;
+        this.zipCode = zipCode;
     }
 
     public BusinessLocation () {}
@@ -36,10 +36,10 @@ public class BusinessLocation extends AbstractEntity{
     }
 
     public int getZipcode() {
-        return zipcode;
+        return zipCode;
     }
 
     public void setZipcode(int zipcode) {
-        this.zipcode = zipcode;
+        this.zipCode = zipcode;
     }
 }

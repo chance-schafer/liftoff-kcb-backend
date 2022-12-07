@@ -1,9 +1,7 @@
 package org.launchcode.liftoff_kcb_backend.models;
 
 import javax.persistence.Entity;
-import javax.persistence.MappedSuperclass;
 
-@MappedSuperclass
 @Entity
 public class BusinessDetails extends AbstractEntity{
 

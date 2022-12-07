@@ -1,17 +1,26 @@
 package org.launchcode.liftoff_kcb_backend.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Business extends AbstractEntity {
 
     private String name;
 
+    // Review Association
+    @OneToOne(cascade = CascadeType.ALL)
     private BusinessDetails businessDetails;
 
+    // Review Association
+    @ManyToOne
     private BusinessType businessType;
 
     //Check data type for location
+    // Review Association
+    @OneToOne
     private BusinessLocation businessLocation;
 
     public Business(String name, BusinessDetails businessDetails, BusinessType businessType, BusinessLocation businessLocation) {
