@@ -1,5 +1,8 @@
-package org.launchcode.liftoff_kcb_backend.models.dto;
+package org.launchcode.liftoff_kcb_backend.models;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Business extends AbstractEntity {
 
     private String name;

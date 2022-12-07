@@ -1,4 +1,4 @@
-package org.launchcode.liftoff_kcb_backend.models.dto;
+package org.launchcode.liftoff_kcb_backend.models;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
