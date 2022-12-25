@@ -55,6 +55,7 @@ public class AuthController {
        }
 
     @PostMapping("register")
+    @CrossOrigin("*")
     public ResponseEntity<String> register(@RequestBody RegisterDto registerDto){
         if(userRepository.existsByUsername(registerDto.getUsername())){
             return new ResponseEntity<>("User name is taken", HttpStatus.BAD_REQUEST);
