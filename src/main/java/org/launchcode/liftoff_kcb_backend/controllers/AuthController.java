@@ -44,6 +44,7 @@ public class AuthController {
     }
 
     @PostMapping("login")
+    @CrossOrigin("*")
     public ResponseEntity<AuthResponseDTO> login(@RequestBody LoginDto loginDto) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginDto.getUsername(),loginDto.getPassword()));
@@ -54,6 +55,7 @@ public class AuthController {
        }
 
     @PostMapping("register")
+    @CrossOrigin("*")
     public ResponseEntity<String> register(@RequestBody RegisterDto registerDto){
         if(userRepository.existsByUsername(registerDto.getUsername())){
             return new ResponseEntity<>("User name is taken", HttpStatus.BAD_REQUEST);
@@ -62,7 +64,15 @@ public class AuthController {
         user.setUsername(registerDto.getUsername());
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
 
-        Role roles = roleRepository.findByName("USER").get();
+        Role roles;
+        if(registerDto.getRole()){
+            roles = roleRepository.findByName("OWNER").get();
+        }
+        else {
+            roles = roleRepository.findByName("USER").get();
+        }
+
+
         user.setRoles(Collections.singletonList(roles));
 
         userRepository.save(user);
