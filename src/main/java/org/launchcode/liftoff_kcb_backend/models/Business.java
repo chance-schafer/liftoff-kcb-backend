@@ -1,11 +1,18 @@
 package org.launchcode.liftoff_kcb_backend.models;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
 
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Business extends AbstractEntity {
 
     private String name;
@@ -15,22 +22,22 @@ public class Business extends AbstractEntity {
     private BusinessDetails businessDetails;
 
     // Review Association
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private BusinessType businessType;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private OwnerType ownerType;
+
 
     //Check data type for location
     // Review Association
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private BusinessLocation businessLocation;
 
-    public Business(String name, BusinessDetails businessDetails, BusinessType businessType, BusinessLocation businessLocation) {
-        this.name = name;
-        this.businessDetails = businessDetails;
-        this.businessType = businessType;
-        this.businessLocation = businessLocation;
-    }
-
-    public Business () {}
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner_id")
+    @JsonBackReference
+    private User owner;
 
     public String getName() {
         return name;
