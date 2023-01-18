@@ -24,4 +24,11 @@ public class UserService {
 
         return user.getRoles();
     }
+
+    // remove an owned business from a user
+    public void removeOwnedBusiness(User user, int businessId) {
+        user.getOwnedBusinesses().removeIf(business -> business.getId() == businessId);
+        userRepository.save(user);
+    }
+
 }
