@@ -1,8 +1,11 @@
 package org.launchcode.liftoff_kcb_backend.exception;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class ResourceNotFoundException extends RuntimeException {
     private String resourceName;
     private String fieldName;
