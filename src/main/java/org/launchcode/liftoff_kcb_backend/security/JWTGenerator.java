@@ -1,8 +1,6 @@
 package org.launchcode.liftoff_kcb_backend.security;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
@@ -47,8 +45,14 @@ public class JWTGenerator {
         try{
             Jwts.parser().setSigningKey(JWT_SECRET).parseClaimsJws(token);
             return true;
-        } catch(Exception ex){
-            throw new AuthenticationCredentialsNotFoundException("JWT was expired or incorrect");
+        }catch (MalformedJwtException e){
+            throw new AuthenticationCredentialsNotFoundException("Invalid token");
+        } catch (ExpiredJwtException e){
+            throw new AuthenticationCredentialsNotFoundException("Expired token");
+        } catch (UnsupportedJwtException e){
+            throw new AuthenticationCredentialsNotFoundException("Unsupported token");
+        } catch (IllegalArgumentException e){
+            throw new AuthenticationCredentialsNotFoundException("Empty token");
         }
     }
 }

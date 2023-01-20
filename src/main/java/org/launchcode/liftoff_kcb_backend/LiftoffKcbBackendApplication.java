@@ -5,9 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class LiftoffKcbBackendApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(LiftoffKcbBackendApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(LiftoffKcbBackendApplication.class, args);
+    }
 
 }
