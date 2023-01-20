@@ -39,7 +39,7 @@ public class UserController {
 //    }
 
     @GetMapping("/roles")
-    public Set<RoleDto> getUserRoles(Authentication authentication) {
+    public RolesDTO getUserRoles(Authentication authentication) {
         return userService.getRolesByUsername(authentication.getName());
     }
 
