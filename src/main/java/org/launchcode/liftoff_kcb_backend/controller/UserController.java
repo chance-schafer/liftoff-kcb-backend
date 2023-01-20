@@ -4,13 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.launchcode.liftoff_kcb_backend.dto.RoleDto;
 import org.launchcode.liftoff_kcb_backend.dto.RolesDTO;
 import org.launchcode.liftoff_kcb_backend.dto.UserDTO;
+import org.launchcode.liftoff_kcb_backend.security.CustomUser;
 import org.launchcode.liftoff_kcb_backend.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -38,14 +36,35 @@ public class UserController {
 //        return null;
 //    }
 
-    @GetMapping("/roles")
-    public RolesDTO getUserRoles(Authentication authentication) {
-        return userService.getRolesByUsername(authentication.getName());
-    }
 
     @GetMapping
     public ResponseEntity<List<UserDTO>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
+//    Create endpoint for getting user by id
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable long id) {
+        return ResponseEntity.ok(userService.findById(id));
+    }
+
+    // create endpoint for getting the roles of a user
+    @GetMapping("/{id}/roles")
+    public ResponseEntity<RolesDTO> getRolesByUserId(@PathVariable long id) {
+        return ResponseEntity.ok(userService.getRolesByUserId(id));
+    }
+
+    // create endpiont for getting authenticated user's roles
+    @GetMapping("/me/roles")
+    public ResponseEntity<RolesDTO> getRolesByAuthenticatedUser(Authentication authentication) {
+        CustomUser user = (CustomUser) authentication.getPrincipal();
+        Long userId = user.getId();
+        return ResponseEntity.ok(userService.getRolesByUserId(userId));
+    }
+
+    // create endpoint for getting authenticated user
+    @GetMapping("/me")
+    public ResponseEntity<UserDTO> getAuthenticatedUser(Authentication authentication) {
+        return ResponseEntity.ok(userService.findByUsername(authentication.getName()));
+    }
 }

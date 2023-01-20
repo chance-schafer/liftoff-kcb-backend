@@ -6,14 +6,12 @@ import org.launchcode.liftoff_kcb_backend.dto.UserDTO;
 import org.launchcode.liftoff_kcb_backend.exception.ResourceNotFoundException;
 import org.launchcode.liftoff_kcb_backend.mapper.RoleMapper;
 import org.launchcode.liftoff_kcb_backend.mapper.UserMapper;
-import org.launchcode.liftoff_kcb_backend.model.Role;
 import org.launchcode.liftoff_kcb_backend.repository.UserRepository;
 import org.launchcode.liftoff_kcb_backend.model.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -31,9 +29,17 @@ public class UserServiceImpl implements org.launchcode.liftoff_kcb_backend.servi
     }
 
     @Override
-    public RolesDTO getRolesByUsername(String username) {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+    public UserDTO findById(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
+
+        return userMapper.modelToDto(user);
+    }
+
+    @Override
+    public RolesDTO getRolesByUserId(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
 
         return roleMapper.toDto(user.getRoles());
 

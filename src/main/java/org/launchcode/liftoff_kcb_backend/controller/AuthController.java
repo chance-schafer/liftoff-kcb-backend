@@ -19,11 +19,11 @@ public class AuthController {
     @CrossOrigin("*")
     public ResponseEntity<AuthResponseDTO> login(@RequestBody LoginDto loginDto) {
         return ResponseEntity.ok(authService.login(loginDto));
-       }
+    }
 
     @PostMapping("register")
     @CrossOrigin("*")
-    public ResponseEntity<String> register(@RequestBody RegisterDto registerDto){
+    public ResponseEntity<String> register(@RequestBody RegisterDto registerDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(authService.register(registerDto));
     }
 }
