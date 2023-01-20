@@ -10,6 +10,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class BusinessController {
 
     @Transactional
     @PostMapping
-    public ResponseEntity<BusinessDTO> addBusiness(@RequestBody BusinessDTO businessDTO, @AuthenticationPrincipal CustomUser user) {
+    public ResponseEntity<BusinessDTO> addBusiness(@RequestBody @Valid BusinessDTO businessDTO, @AuthenticationPrincipal CustomUser user) {
         // get user id from authentication
         Long userId = user.getId();
 

@@ -5,14 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.util.Set;
 
-@Getter
 @Setter
-@AllArgsConstructor
+@Getter
 @NoArgsConstructor
-public class ErrorDetailsDto {
-    private Date timestamp;
-    private String message;
-    private String details;
+@AllArgsConstructor
+
+public class BusinessInfo {
+    private Long id;
+    private String name;
 }
+

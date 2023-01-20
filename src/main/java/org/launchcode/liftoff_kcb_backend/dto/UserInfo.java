@@ -3,13 +3,13 @@ package org.launchcode.liftoff_kcb_backend.dto;
 import lombok.*;
 import org.launchcode.liftoff_kcb_backend.model.Role;
 
-import java.util.Set;
+import java.util.List;
 
 @Setter
 @Getter
-
-@NoArgsConstructor
 @AllArgsConstructor
-public class RolesDTO {
-    private Set<Role> roles;
+@NoArgsConstructor
+public class UserInfo {
+    private int id;
+    private String username;
 }

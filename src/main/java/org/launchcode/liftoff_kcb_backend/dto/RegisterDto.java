@@ -1,14 +1,17 @@
 package org.launchcode.liftoff_kcb_backend.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
-@Data
+
+@Setter
+@Getter
+
 @NoArgsConstructor
 @AllArgsConstructor
 public class RegisterDto {
     private String username;
     private String password;
+    @JsonProperty("isBusinessOwner")
     private boolean isBusinessOwner;
 }

@@ -11,6 +11,8 @@ import org.launchcode.liftoff_kcb_backend.model.BusinessDetails;
 import org.launchcode.liftoff_kcb_backend.model.BusinessType;
 import org.launchcode.liftoff_kcb_backend.model.OwnerType;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -19,6 +21,7 @@ import java.util.Set;
 @Setter
 public class BusinessDTO {
     private Long id;
+    @NotBlank
     private String name;
 
 
@@ -30,5 +33,5 @@ public class BusinessDTO {
 
 
     private BusinessLocationDto businessLocation;
-    private long ownerId;
+    private UserInfo owner;
 }
