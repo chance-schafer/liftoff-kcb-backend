@@ -73,6 +73,11 @@ public class BusinessServiceImpl implements BusinessService {
     @Override
     public void deleteBusiness(Long id) {
         Business business = businessRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Business", "id", id));
+        User user = business.getOwner();
+        // remove business from user owned businesses
+        user.getOwnedBusinesses().remove(business);
+        userRepository.save(user);
+
         businessRepository.delete(business);
     }
 }
