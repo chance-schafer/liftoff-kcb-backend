@@ -8,6 +8,7 @@ public interface BusinessService {
     BusinessDTO createBusiness(BusinessDTO businessDTO, Long userId);
     BusinessDTO createBusiness(BusinessDTO businessDTO);
     BusinessDTO getBusinessById(Long id);
+    List<BusinessDTO> getBusinessesByIds(List<Long> ids);
     BusinessDTO updateBusiness(BusinessDTO businessDTO);
     List<BusinessDTO> getAllBusinesses();
     List<BusinessDTO> getBusinessesByUserId(Long userId);
