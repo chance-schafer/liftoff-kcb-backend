@@ -1,9 +1,6 @@
 package org.launchcode.liftoff_kcb_backend.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -13,8 +10,9 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@EqualsAndHashCode
 @AllArgsConstructor
-public class BusinessType extends AbstractEntity{
+public class BusinessType extends AbstractEntity {
 
     private String name;
 
