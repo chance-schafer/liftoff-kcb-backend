@@ -7,6 +7,7 @@ import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class OwnerTypeDto {
     private long id;
     private String name;
