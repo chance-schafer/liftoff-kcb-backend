@@ -43,6 +43,13 @@ public class BusinessController {
         return ResponseEntity.status(HttpStatus.CREATED).body(businessService.getAllBusinesses());
     }
 
+    @GetMapping(params = "ids")
+    public ResponseEntity<List<BusinessDTO>> getBusinessesByIds(@RequestParam List<Long> ids) {
+        return ResponseEntity.ok(businessService.getBusinessesByIds(ids));
+    }
+
+
+
     // endpoint to get a business by id
     @GetMapping("/{id}")
     public ResponseEntity<BusinessDTO> getBusinessById(@PathVariable long id) {

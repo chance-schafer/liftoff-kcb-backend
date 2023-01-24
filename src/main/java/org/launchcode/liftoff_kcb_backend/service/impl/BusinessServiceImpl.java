@@ -46,6 +46,13 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
+    public List<BusinessDTO> getBusinessesByIds(List<Long> ids) {
+        return ids.stream()
+                .map(this::getBusinessById)
+                .toList();
+    }
+
+    @Override
     public BusinessDTO updateBusiness(BusinessDTO businessDTO) {
         return null;
     }
