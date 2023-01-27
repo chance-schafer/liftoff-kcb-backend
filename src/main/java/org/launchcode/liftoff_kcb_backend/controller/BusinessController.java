@@ -43,6 +43,12 @@ public class BusinessController {
         return ResponseEntity.status(HttpStatus.CREATED).body(businessService.getAllBusinesses());
     }
 
+    // get business by owner id
+    @GetMapping(params = "ownerId")
+    public ResponseEntity<List<BusinessDTO>> getBusinessesByOwnerId(@RequestParam long ownerId) {
+        return ResponseEntity.ok(businessService.getBusinessesByUserId(ownerId));
+    }
+
     @GetMapping(params = "ids")
     public ResponseEntity<List<BusinessDTO>> getBusinessesByIds(@RequestParam List<Long> ids) {
         return ResponseEntity.ok(businessService.getBusinessesByIds(ids));

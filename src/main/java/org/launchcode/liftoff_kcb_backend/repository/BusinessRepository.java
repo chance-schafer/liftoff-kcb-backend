@@ -13,5 +13,4 @@ import java.util.Optional;
 public interface BusinessRepository extends CrudRepository<Business, Long> {
     Optional<Business> findByName(String name);
     List<Business> findByOwnerId(Long ownerId);
-
 }
