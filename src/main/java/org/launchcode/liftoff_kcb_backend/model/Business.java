@@ -34,7 +34,7 @@ public class Business extends AbstractEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private BusinessLocation businessLocation;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private User owner;
 
 }
