@@ -20,4 +20,5 @@ public class UserDTO {
     private String username;
     private Set<RoleDto> roles = new HashSet<>();
     private Set<BusinessInfo> ownedBusinesses = new HashSet<>();
+    private Set<BusinessInfo> likedBusinesses = new HashSet<>();
 }

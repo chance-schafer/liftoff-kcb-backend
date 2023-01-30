@@ -78,6 +78,14 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
+    public List<BusinessDTO> getBusinessesLikedByUserId(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
+        List<Business> businesses = businessRepository.findByLikedBy_Id(userId);
+        List<BusinessDTO> businessDTOs = (List<BusinessDTO>) businessMapper.modelsToDtos(businesses);
+        return businessDTOs;
+    }
+
+    @Override
     public void deleteBusiness(Long id) {
         Business business = businessRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Business", "id", id));
         User user = business.getOwner();

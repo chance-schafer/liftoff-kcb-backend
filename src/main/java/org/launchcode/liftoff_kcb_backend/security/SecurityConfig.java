@@ -37,7 +37,13 @@ public class SecurityConfig {
                         .authenticationEntryPoint(authEntryPoint)
                 ).sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .cors(cors -> cors.configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()));
+                .cors(cors -> cors.configurationSource(request -> {
+                    CorsConfiguration corsConfiguration = new CorsConfiguration();
+                    corsConfiguration.applyPermitDefaultValues();
+                    corsConfiguration.addAllowedMethod(HttpMethod.PUT);
+                    corsConfiguration.addAllowedMethod(HttpMethod.DELETE);
+                    return corsConfiguration;
+                }));
 
         return http.build();
     }
