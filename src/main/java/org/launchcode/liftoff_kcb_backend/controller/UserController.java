@@ -83,5 +83,17 @@ public class UserController {
         return ResponseEntity.ok(businessService.getBusinessesByUserId(userId));
     }
 
+    @GetMapping("/me/liked-businesses")
+    public ResponseEntity<List<BusinessDTO>> getLikedBusinessesByAuthenticatedUser(Authentication authentication) {
+        CustomUser user = (CustomUser) authentication.getPrincipal();
+        Long userId = user.getId();
+        return ResponseEntity.ok(businessService.getBusinessesLikedByUserId(userId));
+    }
+
+    @GetMapping("/{id}/liked-businesses")
+    public ResponseEntity<List<BusinessDTO>> getLikedBusinessesByUserId(@PathVariable long id) {
+        return ResponseEntity.ok(businessService.getBusinessesLikedByUserId(id));
+    }
+
 
 }

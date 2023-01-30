@@ -12,5 +12,8 @@ public interface BusinessService {
     BusinessDTO updateBusiness(BusinessDTO businessDTO);
     List<BusinessDTO> getAllBusinesses();
     List<BusinessDTO> getBusinessesByUserId(Long userId);
+    // get businesses liked by user id
+    List<BusinessDTO> getBusinessesLikedByUserId(Long userId);
+
     void deleteBusiness(Long id);
 }

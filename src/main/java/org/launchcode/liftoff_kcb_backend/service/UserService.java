@@ -1,5 +1,6 @@
 package org.launchcode.liftoff_kcb_backend.service;
 
+import org.launchcode.liftoff_kcb_backend.dto.BusinessInfo;
 import org.launchcode.liftoff_kcb_backend.dto.RolesDTO;
 import org.launchcode.liftoff_kcb_backend.dto.UserDTO;
 import org.launchcode.liftoff_kcb_backend.model.User;
@@ -16,4 +17,8 @@ public interface UserService {
     void removeOwnedBusiness(User user, int businessId);
 
     List<UserDTO> getAllUsers();
+
+    void likeBusiness(Long userId, Long businessId);
+
+    void unlikeBusiness(Long id, long id1);
 }

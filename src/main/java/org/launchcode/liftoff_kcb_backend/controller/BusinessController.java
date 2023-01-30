@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.launchcode.liftoff_kcb_backend.dto.BusinessDTO;
 import org.launchcode.liftoff_kcb_backend.security.CustomUser;
 import org.launchcode.liftoff_kcb_backend.service.BusinessService;
+import org.launchcode.liftoff_kcb_backend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -19,6 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BusinessController {
     private final BusinessService businessService;
+    private final UserService userService;
 
     @PutMapping
     public ResponseEntity<BusinessDTO> updateBusiness(@RequestBody BusinessDTO business) {
@@ -40,7 +42,7 @@ public class BusinessController {
     // add endpoint to get all businesses
     @GetMapping
     public ResponseEntity<List<BusinessDTO>> getAllBusinesses() {
-        return ResponseEntity.status(HttpStatus.CREATED).body(businessService.getAllBusinesses());
+        return ResponseEntity.status(HttpStatus.OK).body(businessService.getAllBusinesses());
     }
 
     // get business by owner id
@@ -66,6 +68,20 @@ public class BusinessController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteBusiness(@PathVariable long id) {
         businessService.deleteBusiness(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    // endpoitn to likea business
+    @PostMapping("/{id}/like")
+    public ResponseEntity<?> likeBusiness(@PathVariable long id, @AuthenticationPrincipal CustomUser user) {
+        userService.likeBusiness(user.getId(), id);
+        return ResponseEntity.noContent().build();
+    }
+
+    // endpoint to unlike a business
+    @DeleteMapping("/{id}/like")
+    public ResponseEntity<?> unlikeBusiness(@PathVariable long id, @AuthenticationPrincipal CustomUser user) {
+        userService.unlikeBusiness(user.getId(), id);
         return ResponseEntity.noContent().build();
     }
 

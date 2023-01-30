@@ -37,4 +37,7 @@ public class Business extends AbstractEntity {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private User owner;
 
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private Set<User> likedBy;
+
 }

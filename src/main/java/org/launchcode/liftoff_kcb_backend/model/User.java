@@ -34,5 +34,6 @@ public class User extends AbstractEntity {
     @JsonManagedReference
     private Set<Business> ownedBusinesses = new HashSet<>();
 
-
+    @ManyToMany(mappedBy = "likedBy", cascade = CascadeType.PERSIST)
+    private Set<Business> likedBusinesses = new HashSet<>();
 }
