@@ -9,7 +9,7 @@ public interface BusinessService {
     BusinessDTO createBusiness(BusinessDTO businessDTO);
     BusinessDTO getBusinessById(Long id);
     List<BusinessDTO> getBusinessesByIds(List<Long> ids);
-    BusinessDTO updateBusiness(BusinessDTO businessDTO);
+    BusinessDTO updateBusiness(Long businessId, BusinessDTO businessDTO);
     List<BusinessDTO> getAllBusinesses();
     List<BusinessDTO> getBusinessesByUserId(Long userId);
     // get businesses liked by user id

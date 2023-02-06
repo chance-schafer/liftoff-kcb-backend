@@ -53,8 +53,16 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
-    public BusinessDTO updateBusiness(BusinessDTO businessDTO) {
-        return null;
+    public BusinessDTO updateBusiness(Long businessId, BusinessDTO businessDTO) {
+        // get existing business by id
+        Business existingBusiness = businessRepository.findById(businessId)
+                .orElseThrow(() -> new ResourceNotFoundException("Business", "id", businessId));
+        Business newBusiness = businessMapper.dtoToModel(businessDTO);
+        newBusiness.setId(existingBusiness.getId());
+
+        newBusiness = businessRepository.save(newBusiness);
+
+        return businessMapper.modelToDto(newBusiness);
     }
 
     @Override
