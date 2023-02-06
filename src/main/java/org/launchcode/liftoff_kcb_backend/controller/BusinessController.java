@@ -22,9 +22,9 @@ public class BusinessController {
     private final BusinessService businessService;
     private final UserService userService;
 
-    @PutMapping
-    public ResponseEntity<BusinessDTO> updateBusiness(@RequestBody BusinessDTO business) {
-        return ResponseEntity.ok(businessService.updateBusiness(business));
+    @PutMapping("/{id}")
+    public ResponseEntity<BusinessDTO> updateBusiness(@PathVariable(name = "id") Long id, @RequestBody BusinessDTO business) {
+        return ResponseEntity.ok(businessService.updateBusiness(id, business));
     }
 
 
