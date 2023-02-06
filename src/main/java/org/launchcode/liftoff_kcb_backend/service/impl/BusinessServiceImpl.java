@@ -59,7 +59,8 @@ public class BusinessServiceImpl implements BusinessService {
                 .orElseThrow(() -> new ResourceNotFoundException("Business", "id", businessId));
         Business newBusiness = businessMapper.dtoToModel(businessDTO);
         newBusiness.setId(existingBusiness.getId());
-
+        newBusiness.setLikedBy(existingBusiness.getLikedBy());
+        newBusiness.setOwner(existingBusiness.getOwner());
         newBusiness = businessRepository.save(newBusiness);
 
         return businessMapper.modelToDto(newBusiness);
