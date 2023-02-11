@@ -18,7 +18,6 @@ public class BusinessLocationDto {
 
     private String city;
     private String state;
-    private String buildingNumber;
-    private String streetName;
+    private String streetAddress;
     private int zipCode;
 }
