@@ -113,7 +113,7 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <configuration>
-                        <mainClass>com.liftoff.kcb.backend.LiftoffKcbBackendApplication</mainClass>
+                        <mainClass>org.launchcode.liftoff_kcb_backend.LiftoffKcbBackendApplication</mainClass>
                     </configuration>
                 </plugin>
 
