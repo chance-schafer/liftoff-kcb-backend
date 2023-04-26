@@ -13,5 +13,8 @@ import java.util.Optional;
 public interface BusinessRepository extends CrudRepository<Business, Long> {
     Optional<Business> findByName(String name);
     List<Business> findByOwnerId(Long ownerId);
+    // get all businesses that have a user with id = userId in their likedBy list
+    List<Business> findByLikedBy_Id(Long userId);
+
 
 }

@@ -23,4 +23,5 @@ public class BusinessDTO {
     private Set<OwnerTypeDto> ownerTypes;
     private BusinessLocationDto businessLocation;
     private UserInfo owner;
+    private int likes;
 }

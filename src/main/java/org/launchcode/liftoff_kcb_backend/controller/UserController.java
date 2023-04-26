@@ -1,10 +1,12 @@
 package org.launchcode.liftoff_kcb_backend.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.launchcode.liftoff_kcb_backend.dto.BusinessDTO;
 import org.launchcode.liftoff_kcb_backend.dto.RoleDto;
 import org.launchcode.liftoff_kcb_backend.dto.RolesDTO;
 import org.launchcode.liftoff_kcb_backend.dto.UserDTO;
 import org.launchcode.liftoff_kcb_backend.security.CustomUser;
+import org.launchcode.liftoff_kcb_backend.service.BusinessService;
 import org.launchcode.liftoff_kcb_backend.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -20,6 +22,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final BusinessService businessService;
 
 //    @GetMapping()
 //    public ResponseEntity<UserDTO> getUserInfo(Authentication authentication) {
@@ -67,4 +70,30 @@ public class UserController {
     public ResponseEntity<UserDTO> getAuthenticatedUser(Authentication authentication) {
         return ResponseEntity.ok(userService.findByUsername(authentication.getName()));
     }
+
+    @GetMapping("/{id}/owned-businesses")
+    public ResponseEntity<List<BusinessDTO>> getOwnedBusinessesByUserId(@PathVariable long id) {
+        return ResponseEntity.ok(businessService.getBusinessesByUserId(id));
+    }
+
+    @GetMapping("/me/owned-businesses")
+    public ResponseEntity<List<BusinessDTO>> getOwnedBusinessesByAuthenticatedUser(Authentication authentication) {
+        CustomUser user = (CustomUser) authentication.getPrincipal();
+        Long userId = user.getId();
+        return ResponseEntity.ok(businessService.getBusinessesByUserId(userId));
+    }
+
+    @GetMapping("/me/liked-businesses")
+    public ResponseEntity<List<BusinessDTO>> getLikedBusinessesByAuthenticatedUser(Authentication authentication) {
+        CustomUser user = (CustomUser) authentication.getPrincipal();
+        Long userId = user.getId();
+        return ResponseEntity.ok(businessService.getBusinessesLikedByUserId(userId));
+    }
+
+    @GetMapping("/{id}/liked-businesses")
+    public ResponseEntity<List<BusinessDTO>> getLikedBusinessesByUserId(@PathVariable long id) {
+        return ResponseEntity.ok(businessService.getBusinessesLikedByUserId(id));
+    }
+
+
 }
