@@ -8,6 +8,7 @@
     * You can use the command line or a GUI tool like MySQL Workbench to create the database and user.
 
 2. Set up the following environment variables:
+    * **PORT**  - The server port to run on
     * **DB_URL** - The URL of the database to connect to, including the port number and database name (e.g. `jdbc:mysql://localhost:3306/kcbusiness`)
     * **DB_USERNAME** - The username of the database user you created in step 1
     * **DB_PASSWORD** - The password of the database user you created in step 1
